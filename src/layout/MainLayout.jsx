@@ -8,6 +8,8 @@ import { Layout, Menu } from "antd";
 import { Link, Outlet } from "react-router-dom";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { RiPlayListAddFill } from "react-icons/ri";
+import { BsClipboardData } from "react-icons/bs";
+import Header from "./Header";
 const { Sider, Content } = Layout;
 
 const MainLayout = () => {
@@ -15,13 +17,13 @@ const MainLayout = () => {
 
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+      <Sider trigger={null} collapsible collapsed={collapsed} className="">
+        <div className="demo-logo-vertical " />
         <Menu
-          theme="dark"
           mode="inline"
+          theme="dark"
           defaultSelectedKeys={["1"]}
-          className="px-2 mt-5"
+          className="px-2 mt-5 "
           items={[
             {
               key: "1",
@@ -45,14 +47,20 @@ const MainLayout = () => {
             },
             {
               key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
+              icon: (
+                <p>
+                  <BsClipboardData className="text-lg" />{" "}
+                  <Link to={"/add-todo"} />
+                </p>
+              ),
+              label: "Clipboard",
             },
           ]}
         />
       </Sider>
       <Layout>
-        <Content className="h-[100vh] bg-gray-100">
+        <Content className="h-[100vh] overflow-y-auto  bg-gray-100">
+          {/* <Header /> */}
           <Outlet />
         </Content>
       </Layout>

@@ -18,9 +18,12 @@ export const todoSlice = createSlice({
     setTodo: (state, { payload }) => {
       state.todoList = payload;
     },
+    updateTodo: (state, { payload: { id, updatedData } }) => {
+      state.todoList[id] = updatedData;
+    },
   },
 });
 
-export const { addTodo, setTodo } = todoSlice.actions;
+export const { addTodo, setTodo, updateTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

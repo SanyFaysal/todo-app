@@ -1,12 +1,14 @@
 import React from "react";
 import moment from "moment";
 import { FiTrash2, FiEdit2, FiClipboard } from "react-icons/fi";
-export default function ListCard({ item }) {
+import { useNavigate } from "react-router-dom";
+export default function ListCard({ item, index }) {
+  const navigate = useNavigate();
   return (
     <div className="p-5 bg-white text-gray-700  rounded-lg text-lg ">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-xl text-sky-400">
+          <h1 className="text-lg text-sky-400">
             {moment(item?.date).format("dddd")}
           </h1>
           <p className=" text-sm  text-sky-400">
@@ -14,7 +16,10 @@ export default function ListCard({ item }) {
           </p>
         </div>
         <div className="flex gap-3 mt-0">
-          <button className="px-2 py-1 bg-sky-50 text-sky-500 rounded text-lg border border-sky-100  hover:bg-sky-500 transition duration-200 hover:text-white">
+          <button
+            onClick={() => navigate(`/todo/${index}`)}
+            className="px-2 py-1 bg-sky-50 text-sky-500 rounded text-lg border border-sky-100  hover:bg-sky-500 transition duration-200 hover:text-white"
+          >
             {" "}
             <FiEdit2 />
           </button>
@@ -28,7 +33,7 @@ export default function ListCard({ item }) {
           </button>
         </div>
       </div>
-      <h1 className="mt-1 text-2xl font-semibold">{item?.title}</h1>
+      <h1 className="mt-1 text-xl font-semibold">{item?.title}</h1>
 
       <p className="">{item?.desc?.slice(0, 200)}</p>
     </div>

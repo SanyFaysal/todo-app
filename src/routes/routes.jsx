@@ -3,6 +3,7 @@ import App from "../App";
 
 import Home from "../pages/Home";
 import AddTodo from "../pages/AddTodo";
+import EditTodo from "../pages/EditTodo";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "add-todo",
         element: <AddTodo />,
+      },
+      {
+        path: "todo/:id",
+        element: <EditTodo />,
       },
     ],
   },
