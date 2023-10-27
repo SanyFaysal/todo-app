@@ -2,8 +2,21 @@ import React from "react";
 import moment from "moment";
 import { FiTrash2, FiEdit2, FiClipboard } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { deleteTodo } from "../redux/todoSlice/todoSlice";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 export default function ListCard({ item, index }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleDeleteTodo = (index) => {
+    let getTodoLists = JSON.parse(localStorage.getItem("todoList"));
+    if (getTodoLists[index]) {
+      getTodoLists = getTodoLists.filter((item, i) => i !== index);
+      localStorage.setItem("todoList", JSON.stringify(getTodoLists));
+      dispatch(deleteTodo(index));
+    }
+    toast.success("Successfully deleted", { id: "deleteTodo" });
+  };
   return (
     <div className="p-5 bg-white text-gray-700  rounded-lg text-lg ">
       <div className="flex justify-between items-center">
@@ -27,7 +40,10 @@ export default function ListCard({ item, index }) {
             {" "}
             <FiClipboard />
           </button>
-          <button className="px-2 py-1 bg-red-50 text-red-500 hover:bg-red-500 transition duration-200 hover:text-white rounded text-lg border border-red-100">
+          <button
+            onClick={() => handleDeleteTodo(index)}
+            className="px-2 py-1 bg-red-50 text-red-500 hover:bg-red-500 transition duration-200 hover:text-white rounded text-lg border border-red-100"
+          >
             {" "}
             <FiTrash2 />
           </button>
