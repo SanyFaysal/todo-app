@@ -7,6 +7,7 @@ import {
 import { Layout, Menu } from "antd";
 import { Link, Outlet } from "react-router-dom";
 import { AiOutlineUnorderedList } from "react-icons/ai";
+import { RiPlayListAddFill } from "react-icons/ri";
 const { Sider, Content } = Layout;
 
 const MainLayout = () => {
@@ -20,20 +21,26 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          className="sticky top-0"
+          className="px-2 mt-5"
           items={[
             {
               key: "1",
               icon: (
                 <p>
-                  <AiOutlineUnorderedList /> <Link to={"/add-todo"} />
+                  <AiOutlineUnorderedList className="text-lg" />{" "}
+                  <Link to={"/"} />
                 </p>
               ),
               label: "Todo List",
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
+              icon: (
+                <p>
+                  <RiPlayListAddFill className="text-lg" />{" "}
+                  <Link to={"/add-todo"} />
+                </p>
+              ),
               label: "Add Todo",
             },
             {
@@ -45,13 +52,7 @@ const MainLayout = () => {
         />
       </Sider>
       <Layout>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
+        <Content className="h-[100vh] bg-gray-100">
           <Outlet />
         </Content>
       </Layout>

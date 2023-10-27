@@ -9,8 +9,9 @@ export default function TodoLists() {
   useEffect(() => {
     setItems(todoList);
   }, [todoList]);
+  console.log({ items });
   return (
-    <div className="grid grid-cols-3 gap-5">
+    <div className="grid grid-cols-3 gap-5 m-5">
       {items?.map((item, i) => (
         <ListCard key={i} item={item} />
       ))}

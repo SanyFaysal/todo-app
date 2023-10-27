@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo, setTodo } from "../redux/todoSlice/todoSlice";
+import TodoLists from "../components/TodoLists";
 
 export default function AddTodo() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("todoList"));
-    dispatch(setTodo(items));
-  }, []);
 
   const handleAddTodo = (e) => {
     e.preventDefault();
@@ -70,9 +67,6 @@ export default function AddTodo() {
           className="w-full  py-3 bg-green-500 text-center rounded-lg"
         />
       </form>
-      <div className="w-full">
-        <TodoLists />
-      </div>
     </div>
   );
 }
