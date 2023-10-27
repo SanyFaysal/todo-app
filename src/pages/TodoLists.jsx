@@ -4,11 +4,15 @@ import ListCard from "../components/ListCard";
 
 export default function TodoLists() {
   const [items, setItems] = useState();
-  const { todoList } = useSelector((state) => state?.todo);
+  const { todoList, searchResult } = useSelector((state) => state?.todo);
 
   useEffect(() => {
-    setItems(todoList);
-  }, [todoList]);
+    if (searchResult?.length) {
+      setItems(searchResult);
+    } else {
+      setItems(todoList);
+    }
+  }, [todoList, searchResult]);
   console.log({ items });
   return (
     <div className="grid grid-cols-1 gap-5  mb-8">
