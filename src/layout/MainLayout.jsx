@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import { Link, Outlet } from "react-router-dom";
-import { AiOutlineUnorderedList } from "react-icons/ai";
+import { AiOutlineAppstore, AiOutlineUnorderedList } from "react-icons/ai";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { BsClipboardData } from "react-icons/bs";
 import Header from "./Header";
@@ -39,7 +39,7 @@ const MainLayout = () => {
               key: "2",
               icon: (
                 <p>
-                  <RiPlayListAddFill className="text-lg" />{" "}
+                  <AiOutlineAppstore className="text-lg" />{" "}
                   <Link to={"/categories"} />
                 </p>
               ),

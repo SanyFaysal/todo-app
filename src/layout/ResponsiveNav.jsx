@@ -1,6 +1,10 @@
 import { Dropdown, Space } from "antd";
 import React from "react";
-import { AiOutlineMenu, AiOutlineUnorderedList } from "react-icons/ai";
+import {
+  AiOutlineAppstore,
+  AiOutlineMenu,
+  AiOutlineUnorderedList,
+} from "react-icons/ai";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +31,7 @@ export default function ResponsiveNav() {
       key: "2",
       icon: (
         <p>
-          <RiPlayListAddFill className="text-lg" />
+          <AiOutlineAppstore className="text-lg" />
         </p>
       ),
       label: "Todo Categories",
