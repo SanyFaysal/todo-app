@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   todoList: [],
   searchResult: [],
+  searchText: null,
 };
 
 export const todoSlice = createSlice({
@@ -28,12 +29,22 @@ export const todoSlice = createSlice({
       );
     },
     searchResult: (state, { payload }) => {
-      state.todoList = payload;
+      console.log({ payload });
+      state.searchResult = payload;
+    },
+    searchText: (state, { payload }) => {
+      state.searchText = payload;
     },
   },
 });
 
-export const { addTodo, setTodo, updateTodo, deleteTodo, searchResult } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  setTodo,
+  updateTodo,
+  deleteTodo,
+  searchResult,
+  searchText,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;
