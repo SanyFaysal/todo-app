@@ -66,6 +66,7 @@ export default function AddTodo() {
             picker="day"
           />
         </div>
+
         <div>
           <label htmlFor="todo3 text-"> Todo Category</label>
           <Select

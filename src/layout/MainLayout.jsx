@@ -40,13 +40,24 @@ const MainLayout = () => {
               icon: (
                 <p>
                   <RiPlayListAddFill className="text-lg" />{" "}
+                  <Link to={"/categories"} />
+                </p>
+              ),
+              label: "Todo Categories",
+            },
+            {
+              key: "3",
+              icon: (
+                <p>
+                  <RiPlayListAddFill className="text-lg" />{" "}
                   <Link to={"/add-todo"} />
                 </p>
               ),
               label: "Add Todo",
             },
+
             {
-              key: "3",
+              key: "4",
               icon: (
                 <p>
                   <BsClipboardData className="text-lg" />{" "}
