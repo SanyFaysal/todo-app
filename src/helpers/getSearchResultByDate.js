@@ -1,4 +1,7 @@
 export const getSearchResultByDate = (query, data) => {
+  if (query === "all") {
+    return data;
+  }
   const currentDate = new Date();
   const queryDateRange = new Date();
   queryDateRange.setDate(currentDate.getDate() + query);

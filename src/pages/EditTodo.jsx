@@ -5,9 +5,12 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { FiArrowLeft } from "react-icons/fi";
+import { Select } from "antd";
+import { categoriesOptions } from "../utils/constants";
 
 export default function EditTodo() {
   const navigate = useNavigate();
+  const [category, setCategory] = useState();
   const [todoDetails, setTodoDetails] = useState();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -18,7 +21,7 @@ export default function EditTodo() {
     const date = e.target.todo_date.value || todoDetails?.date;
     const title = e.target.todo_title.value || todoDetails?.title;
     const desc = e.target.todo_desc.value || todoDetails?.desc;
-    const updatedData = { date, title, desc };
+    const updatedData = { date, title, desc, category };
 
     const getTodoLists = JSON.parse(localStorage.getItem("todoList"));
     if (getTodoLists[id]) {
@@ -65,6 +68,24 @@ export default function EditTodo() {
               defaultValue={todoDetails?.title}
               name="todo_title"
               className="border  px-3 py-2 rounded-lg w-full"
+            />
+          </div>
+          <div>
+            <label htmlFor="todo3 text-"> Todo Category</label>
+            <Select
+              className=" w-full"
+              size="large"
+              required
+              name="todo_category"
+              value={category}
+              defaultValue={todoDetails?.category}
+              onChange={(e) => setCategory(e)}
+              options={categoriesOptions.map((item, i) => ({
+                label: item,
+                value: item,
+                disabled: item === categoriesOptions[0],
+                key: i,
+              }))}
             />
           </div>
           <div>

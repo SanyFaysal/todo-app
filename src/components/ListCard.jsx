@@ -18,17 +18,17 @@ export default function ListCard({ item, index }) {
     toast.success("Successfully deleted", { id: "deleteTodo" });
   };
   return (
-    <div className="p-5 bg-white text-gray-700  rounded-lg text-lg ">
+    <div className="px-5 py-4 bg-white text-gray-700  rounded-lg text-lg ">
       <div className="flex justify-between items-top">
-        <div>
-          <h1 className="text-lg text-sky-500 font-semibold">
-            {moment(item?.date).format("dddd")}
-          </h1>
-          <p className=" text-sm  text-sky-500">
-            {moment(item?.date).format("MMMM Do YYYY")}
+        <div className="flex  mb-3   rounded-lg">
+          <span className="px-3 bg-green-500 rounded text-sm my-auto  text-white py-1">
+            {item?.category}
+          </span>
+          <p className="   px-2  ">
+            {moment(item?.date).format("DD MMM, YYYY")}
           </p>
         </div>
-        <div className="flex gap-3 mt-0">
+        <div className="flex gap-3 ">
           <div>
             <button
               onClick={() => navigate(`/todo/${index}`)}
@@ -55,7 +55,7 @@ export default function ListCard({ item, index }) {
           </div>
         </div>
       </div>
-      <h1 className="mt-1 text-xl font-semibold">{item?.title}</h1>
+      <h1 className=" text-xl font-semibold">{item?.title}</h1>
 
       <p className="">{item?.desc?.slice(0, 200)}</p>
     </div>

@@ -3,7 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   todoList: [],
   searchResult: [],
-  searchText: null,
+  search: {
+    text: "",
+    date: null,
+    dateRange: 0,
+  },
 };
 
 export const todoSlice = createSlice({
@@ -32,8 +36,8 @@ export const todoSlice = createSlice({
       console.log({ payload });
       state.searchResult = payload;
     },
-    searchText: (state, { payload }) => {
-      state.searchText = payload;
+    setSearch: (state, { payload }) => {
+      state.search[payload.key] = payload.value;
     },
   },
 });
@@ -44,7 +48,7 @@ export const {
   updateTodo,
   deleteTodo,
   searchResult,
-  searchText,
+  setSearch,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

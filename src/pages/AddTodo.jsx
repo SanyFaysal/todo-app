@@ -1,30 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo, setTodo } from "../redux/todoSlice/todoSlice";
 import toast from "react-hot-toast";
+import { DatePicker, Input, Select } from "antd";
+import { categoriesOptions } from "../utils/constants.jsx";
+import TextArea from "antd/es/input/TextArea";
+import { getForMattedDate } from "../helpers/getFormattedDate";
 
 export default function AddTodo() {
   const dispatch = useDispatch();
-
+  const [date, setDate] = useState();
+  const [category, setCategory] = useState();
   const handleAddTodo = (e) => {
     e.preventDefault();
-    const date = e.target.todo_date.value;
+
     const title = e.target.todo_title.value;
+
     const desc = e.target.todo_desc.value;
-    const newTodo = { date, title, desc };
 
-    const getTodoLists = JSON.parse(localStorage.getItem("todoList"));
-    if (getTodoLists) {
-      getTodoLists.push(newTodo);
-      localStorage.setItem("todoList", JSON.stringify(getTodoLists));
-      dispatch(addTodo(newTodo));
-    } else if (!getTodoLists) {
-      const todoLists = [newTodo];
-      localStorage.setItem("todoList", JSON.stringify(todoLists));
-      dispatch(addTodo(newTodo));
+    const newTodo = { title, desc, date, category };
+    console.log({ newTodo });
+    if (date && title && category) {
+      const getTodoLists = JSON.parse(localStorage.getItem("todoList"));
+      if (getTodoLists) {
+        getTodoLists.push(newTodo);
+        localStorage.setItem("todoList", JSON.stringify(getTodoLists));
+        dispatch(addTodo(newTodo));
+      } else if (!getTodoLists) {
+        const todoLists = [newTodo];
+        localStorage.setItem("todoList", JSON.stringify(todoLists));
+        dispatch(addTodo(newTodo));
+      }
+      toast.success("Todo added to your list", { id: "addTodo" });
+    } else {
+      toast.error("Please provide all data");
     }
-
-    toast.success("Todo added to your list", { id: "addTodo" });
   };
 
   return (
@@ -34,35 +44,53 @@ export default function AddTodo() {
         className="bg-white rounded-lg flex flex-col w-3/4 mx-auto px-20 py-10 gap-2 "
       >
         <h1 className="pb-10 text-xl text-center">Add a Todo </h1>
-        <div>
-          <label htmlFor="todo3 text-"> Todo Date</label>
-          <input
-            type="date"
-            name="todo_date"
-            id=""
-            required
-            className="px-3 py-2 border rounded-lg w-full"
-          />
-        </div>
 
         <div>
           <label htmlFor="todo2"> Todo Title</label>
-
-          <input
-            required
-            type="text"
+          <Input
+            placeholder="Write a Title"
             name="todo_title"
-            className="  px-3 py-2 border rounded-lg w-full"
+            size="large"
+            required
+            className="w-full bg-white"
           />
         </div>
         <div>
+          <label htmlFor="todo3 text-"> Todo Date</label>
+          <DatePicker
+            className="w-full"
+            placeholder="Choose date"
+            size="large"
+            required
+            onChange={(e) => setDate(getForMattedDate(e))}
+            picker="day"
+          />
+        </div>
+        <div>
+          <label htmlFor="todo3 text-"> Todo Category</label>
+          <Select
+            className=" w-full"
+            size="large"
+            required
+            name="todo_category"
+            defaultValue={categoriesOptions[0]}
+            onChange={(e) => setCategory(e)}
+            options={categoriesOptions.map((item, i) => ({
+              label: item,
+              value: item,
+              disabled: item === categoriesOptions[0],
+              key: i,
+            }))}
+          />
+        </div>
+
+        <div>
           <label htmlFor="todo1"> Todo description</label>
-          <textarea
-            className="rounded-lg w-full px-3 py-2 border"
+          <TextArea
+            placeholder="Write description ...."
+            rows={4}
             name="todo_desc"
-            id=""
-            cols="30"
-            rows="3"
+            className="w-full"
           />
         </div>
         <div className="flex justify-end">

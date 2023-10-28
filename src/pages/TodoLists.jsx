@@ -5,24 +5,26 @@ import { Empty } from "antd";
 
 export default function TodoLists() {
   const [items, setItems] = useState();
-  const { todoList, searchResult, searchText } = useSelector(
-    (state) => state?.todo
-  );
+  const {
+    todoList,
+    searchResult,
+    search: { text, date, dateRange },
+  } = useSelector((state) => state?.todo);
 
   useEffect(() => {
-    if (searchText) {
+    if (text?.length || date || dateRange) {
       setItems(searchResult);
     } else {
       setItems(todoList);
     }
-  }, [todoList, searchResult, searchText]);
+  }, [todoList, searchResult, text, date, dateRange]);
 
   return (
     <div className="grid grid-cols-1 gap-5  mb-8">
       {items?.map((item, index) => (
         <ListCard key={index} item={item} index={index} />
       ))}
-      {searchText && !searchResult?.length && (
+      {(text || date || dateRange) && !searchResult?.length && (
         <div className=" flex justify-center ">
           <Empty />
         </div>
