@@ -23,11 +23,11 @@ export default function ListCard({ item, index }) {
   return (
     <div className="px-5 py-4 bg-white text-gray-700  rounded-lg text-lg ">
       <div className="flex justify-between items-top">
-        <div className="flex  mb-3   rounded-lg">
+        <div className="lg:flex  mb-3   rounded-lg">
           <span className="px-3 bg-green-500 rounded text-sm my-auto  text-white py-1">
             {item?.category}
           </span>
-          <p className="   px-2  ">
+          <p className="   lg:px-2  ">
             {moment(item?.date).format("DD MMM, YYYY")}
           </p>
         </div>
