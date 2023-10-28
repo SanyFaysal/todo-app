@@ -21,22 +21,23 @@ export default function TodoLists() {
 
   return (
     <div>
-      <div className="flex justify-between mb-4 bg-white px-5 py-3 rounded-lg items-center ">
+      <div className="flex justify-between mb-3 bg-white px-5 py-3 rounded-lg items-center ">
         <h1 className=" text-2xl">All Todo </h1>
         <h1 className=" text-xl text-center">Total: {todoList?.length} </h1>
       </div>
-      <div className="grid grid-cols-2 gap-5  mb-8">
+      <div className="grid lg:grid-cols-2 gap-5  mb-8">
         {items?.map((item, index) => (
           <ListCard key={index} item={item} index={index} />
         ))}
-        {(text || date || dateRange) && !searchResult?.length ? (
-          <div className=" flex justify-center ">
-            <Empty />
-          </div>
-        ) : (
-          ""
-        )}
       </div>
+
+      {(text || date || dateRange) && !searchResult?.length ? (
+        <div className=" flex justify-center w-full ">
+          <Empty />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

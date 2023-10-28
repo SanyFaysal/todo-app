@@ -10,6 +10,7 @@ import { categoriesOptions } from "../utils/constants";
 
 export default function EditTodo() {
   const navigate = useNavigate();
+
   const [category, setCategory] = useState();
   const [todoDetails, setTodoDetails] = useState();
   const { id } = useParams();
@@ -21,7 +22,13 @@ export default function EditTodo() {
     const date = e.target.todo_date.value || todoDetails?.date;
     const title = e.target.todo_title.value || todoDetails?.title;
     const desc = e.target.todo_desc.value || todoDetails?.desc;
-    const updatedData = { date, title, desc, category };
+
+    const updatedData = {
+      date,
+      title,
+      desc,
+      category: category || todoDetails?.category,
+    };
 
     const getTodoLists = JSON.parse(localStorage.getItem("todoList"));
     if (getTodoLists[id]) {
@@ -44,7 +51,7 @@ export default function EditTodo() {
       {todoDetails ? (
         <form
           onSubmit={handleUpdateTodo}
-          className="  flex flex-col w-3/4 mx-auto rounded-lg bg-white pt-10 px-20 pb-16 gap-2 "
+          className="  flex flex-col lg:w-3/4 w-full lg:mx-auto rounded-lg bg-white pt-10 lg:px-20 px-6 mx-2 lg:pb-16 pb-6 gap-2 "
         >
           <h1 className="text-center pb-10 text-xl">Update Todo</h1>
           <div>

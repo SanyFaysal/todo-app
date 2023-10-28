@@ -17,7 +17,7 @@ const MainLayout = () => {
 
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} className="">
+      <Sider className="hidden lg:block">
         <div className="demo-logo-vertical " />
         <Menu
           mode="inline"
@@ -55,23 +55,11 @@ const MainLayout = () => {
               ),
               label: "Add Todo",
             },
-
-            {
-              key: "4",
-              icon: (
-                <p>
-                  <BsClipboardData className="text-lg" />{" "}
-                  <Link to={"/add-todo"} />
-                </p>
-              ),
-              label: "Clipboard",
-            },
           ]}
         />
       </Sider>
       <Layout>
         <Content className="h-[100vh] overflow-y-auto  bg-gray-100">
-          {/* <Header /> */}
           <Outlet />
         </Content>
       </Layout>

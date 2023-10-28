@@ -5,9 +5,7 @@ import { useNavigate, useParams, useRoutes } from "react-router-dom";
 import { deleteTodo } from "../redux/todoSlice/todoSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-
-export default function ListCard({ item, index }) {
+export default function CategoryCardTodo({ item }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleDeleteTodo = (index) => {
@@ -34,7 +32,7 @@ export default function ListCard({ item, index }) {
         <div className="flex gap-3 ">
           <div>
             <button
-              onClick={() => navigate(`/todo/${index}`)}
+              onClick={() => navigate(`/todo/${item?.index}`)}
               className="px-2 py-1 bg-sky-50 text-sky-500 rounded text-lg border border-sky-100  hover:bg-sky-500 transition duration-200 hover:text-white"
             >
               {" "}
@@ -42,22 +40,14 @@ export default function ListCard({ item, index }) {
             </button>
           </div>
           <div>
-            <CopyToClipboard
-              text={`${item?.date} - ${item?.title} - ${item?.desc}`}
-            >
-              <button
-                onClick={() =>
-                  toast.success("Copied to your clipboard ", { id: "copy" })
-                }
-                className="px-2 py-1 bg-green-50 text-green-500 rounded text-xl border border-green-100  hover:bg-green-500 transition duration-200 hover:text-white"
-              >
-                <FiClipboard />
-              </button>
-            </CopyToClipboard>
+            <button className="px-2 py-1 bg-green-50 text-green-500 rounded text-xl border border-green-100  hover:bg-green-500 transition duration-200 hover:text-white">
+              {" "}
+              <FiClipboard />
+            </button>
           </div>
           <div>
             <button
-              onClick={() => handleDeleteTodo(index)}
+              onClick={() => handleDeleteTodo(item?.index)}
               className="px-2 py-1 bg-red-50 text-red-500 hover:bg-red-500 transition duration-200 hover:text-white rounded text-lg border border-red-100"
             >
               {" "}
